@@ -1,3 +1,4 @@
+'use strict'
 const apiKey = "r8eyCXf0BCTp3DlPOANozZS0HjhNv0Y6JbEIj2uE"
 const searchURL = `https://developer.nps.gov/api/v1/parks`
 
@@ -47,7 +48,10 @@ function watchForm() {
      $('#js-form').submit(event => {
           event.preventDefault();
           const searchTerm = $('#js-state').val();
-          const maxResults = $('#js-max-results').val();
+          let maxResults = $('#js-max-results').val();
+          if (maxResults === "") {
+               maxResults = 10;
+          }
           console.log(searchTerm, maxResults)
           getParkList(searchTerm, maxResults)
      });
